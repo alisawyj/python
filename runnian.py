@@ -1,5 +1,4 @@
-#-*- coding:utf-8 -*-
-'''判断一个年份是不是闰年'''
+﻿'''判断一个年份是不是闰年'''
 '''year = raw_input("please input a year:")
 if (int(year)%400 == 0 or (int(year)%4 ==0 and int(year)%4 != 0)):
     print("此年是闰年！！")
@@ -123,46 +122,44 @@ if __name__== "__main__":
 
                     
 '''利用条件运算符的嵌套来完成此题：学习成绩>=90分的同学用A表示，60-89分之间的用B表示，60分以下的用C表示'''
-
-'''def fun(num):
-    if num >= 90:
-        print("A")
-    elif num >= 60 and num < 90:
-        print("B")
-    elif num < 60 and num >= 0:
-        print("C")
-    else:
-        print("num err!")
-if __name__ == "__main__":
-    num = input("please input a num:")
-    fun(int(num))'''
-        
 '''输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数'''
-
-def count(trs):
-    sum1= 0
-    sum2 = 0
-    sum3 = 0
-    sum4 = 0
-    strs = trs.lower()
-    for c in strs:
-        if c >= 'a' and c <= 'z':
-            sum1 += 1
-        elif c >= '1' and c <= '9':
-            sum2 += 1
-        elif c == ' ':
-            sum3 += 1
-        else:
-            sum4 += 1
-    print "英文字母的个数是%d" % sum1
-    print "数字的个数是%d" % sum2
-    print "空格个数是%d" % sum3
-    print "其他的个数是%d" % sum4
-if __name__ == "__main__":
-    #strs = input("please input a string:")
-    count("sldfj ### ###")      
 '''求s=a+aa+aaa+aaaa+aa...a的值，其中a是一个数字。例如2+22+222+2222+22222(此时共有5个数相加)，几个数相加有键盘控制。'''
+'''def sums(num,n):
+    sum1  = 0
+    count = 0
+    print("s=",end="")
+    for i in range(0,n):
+        sum1 += (10**i)*num
+        if i < n-1:
+            print("%d+" % sum1,end="")
+        else:
+            print("%d=" % sum1,end="")
+        count += sum1
+    print(count)
+if __name__== "__main__":
+     num = input("please input a number:")
+     n = input("please input a number:")
+     if int(num) >0 and int(num) < 9:
+         sums(int(num),int(n))
+     else:
+         print("number error!!")'''
+    
 '''一个数如果恰好等于它的因子之和，这个数就称为“完数”。例如6=1＋2＋3.编程找出1000以内的所有完数。'''
+'''def ispefect(num):
+    flag = True
+    sums = 1
+    temp = num
+    for i in range(2,int(num/2)+1):
+        while num%i == 0:
+            sums += i
+            num /= i
+    if sums != temp:
+        flag = False
+    return flag
+if __name__== "__main__":
+     for i in range(1,1000):
+         if ispefect(i):
+             print(i)'''
 ''' 题目：一球从100米高度自由落下，每次落地后反跳回原高度的一半；再落下，求它在第10次落地时，共经过多少米？第10次反弹多高？'''
 '''猴子吃桃问题：猴子第一天摘下若干个桃子，当即吃了一半，还不瘾，又多吃了一个第二天早上又将剩下的桃子吃掉一半，又多吃了一个。以后每天早上都吃了前一天剩下的一半零一个。到第10天早上想再吃时，
    见只剩下一个桃子了。求第一天共摘了多少。'''
@@ -187,3 +184,77 @@ for m in range(3,0,-1):
     for j in range(1,2*m):
         print("*",end="")
     print("\n")'''
+'''
+★
+【程序22】
+题目：两个乒乓球队进行比赛，各出三人。甲队为a,b,c三人，乙队为x,y,z三人。已抽签决定
+　　　比赛名单。有人向队员打听比赛的名单。a说他不和x比，c说他不和x,z比，请编程序找出
+　　　三队赛手的名单。 
+'''
+'''
+【程序24】 
+题目：有一分数序列：2/1，3/2，5/3，8/5，13/8，21/13...求出这个数列的前20项之和。
+'''
+'''def sums(n):
+    sum1 = 0.0
+    sumed = 0.0
+    a = 1
+    b = 2
+    for i in range(n):
+        sum1 = float(b)/float(a)
+        sumed += sum1
+        if i == n-1:
+            print ("%d/%d=" % (b,a)),
+        else:
+            print ("%d/%d+" % (b,a)),
+        temp = a
+        a = b
+        b = temp + b
+    print(sumed)
+if __name__== "__main__":
+    n = int(input("please input a number:"))
+    sums(n)'''
+'''
+【程序25】 
+题目：求1+2!+3!+...+20!的和
+'''
+'''def sums(n):
+    sumed = 0
+    temp = 1
+    if n <= 0:
+        print "error"
+        return
+    for i in range(1,n+1):
+        for j in range(1,i+1):
+            temp *= j
+        if i == n:
+            print "%d!=" % i,
+        else:
+            print "%d!+" % i,
+        sumed += temp
+        temp = 1
+    print sumed
+if __name__ == "__main__":
+    n = int(input("please input a number:"))
+    sums(n)'''
+'''
+【程序26】 
+题目：利用递归方法求5!。
+'''
+def fun(n):
+    if n == 1:
+        return 1
+    elif n == 0:
+        return 0
+    elif n < 0:
+        return -1
+    else:
+        return n * fun(n-1)
+if __name__ == "__main__":
+    n = int(input("please input a number:"))
+    print fun(n)
+'''
+【程序27】 
+题目：利用递归函数调用方式，将所输入的5个字符，以相反顺序打印出来。
+'''
+
