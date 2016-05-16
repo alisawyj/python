@@ -38,6 +38,7 @@ python fin.py
 '''
 from browsermobproxy import Server
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import json
 
 #网页代理地址 windows上面应该是browsermob-proxy.bat文件
@@ -103,6 +104,10 @@ class CreateHar(object):
         """stop server and driver"""
         self.server.stop()
         self.driver.quit()
+
+    def switch_to_last_window(self):
+        for _handle in self.driver.window_handles:
+            self.driver.switch_to_window(_handle)
  
  
 if __name__ == '__main__':
@@ -112,6 +117,13 @@ if __name__ == '__main__':
     # RUN.create_har('stackoverflow', 'http://stackoverflow.com')
     # RUN.create_har('PPTV首页', 'http://www.pptv.com')
     # RUN.create_har('百度一下，你就知道', 'http://www.pptv.com')
+    
+
+    RUN.driver.get('http://www.pptv.com')
+    RUN.driver.find_element_by_name('kw').send_keys(u'欢乐颂' + Keys.RETURN)
+    RUN.switch_to_last_window()
+    RUN.driver.find_element_by_xpath("//*[@id='search-result']/div[2]/div[2]/div/div[1]/ul/li[1]/a").click()
+    RUN.switch_to_last_window()
     #这里是你要请求的网页的title和网页链接地址 har文件保存在和执行python文件同一目录中
-    RUN.create_har(u'欢乐颂(第01集)-高清在线观看-PPTV聚力-始终和你同一频道', 'http://v.pptv.com/show/61uPDHTaSojradE.html')
+    RUN.create_har(RUN.driver.title, RUN.driver.current_url)
     RUN.stop_all()
